@@ -5,7 +5,7 @@ A minimal, professional LaTeX CV template designed for ML / Computer Vision engi
 ## Preview
 
 <p align="center">
-  <img src="preview.png" width="600" alt="CV Preview" />
+  <img src="0.png" width="600" alt="CV Preview" />
 </p>
 
 ## Features
