@@ -1,0 +1,200 @@
+%-------------------------
+% Academic / Industry CV — LaTeX Template
+% A clean, professional CV for ML / Computer Vision engineers
+% Compiler: pdfLaTeX (Overleaf-ready)
+% License: MIT — free to use and modify
+%-------------------------
+
+\documentclass[11pt,a4paper]{article}
+
+%---------- PACKAGES ----------
+\usepackage[left=1.8cm, right=1.8cm, top=1.6cm, bottom=1.6cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fontawesome5}
+\usepackage{tabularx}
+\usepackage{ragged2e}
+
+%---------- COLORS ----------
+% Tip: change these to personalize your CV instantly
+\definecolor{accentcolor}{HTML}{8B2500}
+\definecolor{darktext}{HTML}{1a1a2e}
+\definecolor{subtext}{HTML}{555555}
+\definecolor{rulecolor}{HTML}{c45d3e}
+\definecolor{linkblue}{HTML}{1a5276}
+
+%---------- HYPERREF ----------
+\hypersetup{
+    colorlinks=true,
+    linkcolor=linkblue,
+    urlcolor=linkblue,
+    pdfauthor={Your Name},
+    pdftitle={CV - Your Name},
+}
+
+%---------- SPACING ----------
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+%---------- SECTION FORMATTING ----------
+\titleformat{\section}{%
+    \color{accentcolor}\large\bfseries\scshape
+}{}{0em}{}[\vspace{2pt}{\color{rulecolor}\hrule height 0.6pt}]
+\titlespacing*{\section}{0pt}{14pt}{7pt}
+
+%---------- CUSTOM COMMANDS ----------
+\newcommand{\cventry}[3]{%
+    \textbf{#1}\hfill\textit{#2}\par\vspace{2pt}%
+    #3\par\vspace{7pt}%
+}
+
+\newcommand{\cvproject}[4]{%
+    \textbf{#1}\hfill\textit{#2}\par\vspace{2pt}%
+    #3\par\vspace{1pt}%
+    {\small\color{subtext}\textit{Tech: #4}}\par\vspace{7pt}%
+}
+
+\newcommand{\skillrow}[2]{%
+    \textbf{#1:} & #2 \\[3pt]
+}
+
+%========================================
+\begin{document}
+\pagestyle{empty}
+\color{darktext}
+
+%========== HEADER ==========
+\begin{center}
+    {\LARGE\bfseries Alex Chen}\\[7pt]
+    {\large\color{subtext} Object Detection\enspace$\cdot$\enspace Computer Vision Engineer}\\[9pt]
+    {\small
+        \faEnvelope\enspace \href{mailto:alex.chen.cv@outlook.com}{alex.chen.cv@outlook.com}
+        \enspace$|$\enspace
+        \faPhone\enspace +1\,(555)\,012\,3456
+    }\\[3pt]
+    {\small
+        \faGithub\enspace \href{https://github.com/alexchen-cv}{github.com/alexchen-cv}
+        \enspace$|$\enspace
+        \faGlobe\enspace \href{https://alexchen-cv.github.io/}{alexchen-cv.github.io}
+        \enspace$|$\enspace
+        \faLinkedin\enspace \href{https://linkedin.com/in/alexchen-cv}{LinkedIn}
+    }\\[3pt]
+    {\small\color{subtext}
+        Open to relocation: Germany\enspace$\cdot$\enspace Netherlands\enspace$\cdot$\enspace EU
+        \enspace$|$\enspace
+        Eligible for EU Blue Card
+    }
+\end{center}
+\vspace{2pt}
+
+%========== PROFESSIONAL SUMMARY ==========
+\section{Professional Summary}
+
+Computer vision engineer with an M.Eng.\ in Computer Science and 2+ years of research focused on real-time object detection and multi-scale feature fusion. Designed and deployed two detection architectures --- an attention-enhanced YOLO variant and a transformer-CNN hybrid detector --- achieving state-of-the-art mAP on COCO and domain-specific industrial datasets. Experienced in edge deployment (TensorRT / ONNX) and building end-to-end perception pipelines from data annotation to production inference.
+
+%========== EDUCATION ==========
+\section{Education}
+
+\cventry{M.Eng.\ in Computer Science}{Sep 2022 -- Jun 2025}{%
+    University of Science and Technology, China\par\vspace{1pt}
+    Thesis: \textit{Multi-Scale Attention Networks for Real-Time Object Detection}\enspace$|$\enspace Advisor: Prof.\ Wei Zhang
+    \begin{itemize}[leftmargin=14pt, nosep, topsep=3pt, itemsep=1pt]
+        \item Proposed two novel detection architectures; benchmarked on COCO, VOC, and custom industrial datasets.
+        \item Trained on NVIDIA A100 cluster with PyTorch; implemented full ablation studies and latency profiling.
+    \end{itemize}
+}
+
+\cventry{B.Eng.\ in Software Engineering}{Sep 2018 -- Jun 2022}{%
+    National University, China\par\vspace{1pt}
+    Thesis: \textit{Pedestrian Detection in Crowded Scenes via Occlusion-Aware Feature Learning}
+}
+
+%========== TECHNICAL SKILLS ==========
+\section{Technical Skills}
+
+\begin{tabularx}{\textwidth}{@{}r X@{}}
+    \skillrow{Detection \& Vision}{YOLO (v5/v7/v8), Faster R-CNN, DETR, RT-DETR, Anchor-Free Detectors, Feature Pyramid Networks, NMS variants}
+    \skillrow{Deep Learning}{PyTorch, CNN, Vision Transformer, Attention Mechanisms, Knowledge Distillation, Quantization-Aware Training}
+    \skillrow{Deployment}{ONNX, TensorRT, OpenVINO, Triton Inference Server, CUDA, C++ inference pipelines}
+    \skillrow{Engineering}{Python, C++, OpenCV, NumPy, Docker, Git, Linux, MLflow, Weights \& Biases}
+    \skillrow{Data}{COCO, VOC, LVIS, Roboflow, CVAT annotation, synthetic data augmentation (Albumentations, Mosaic)}
+    \skillrow{Languages}{Mandarin (native), English (fluent), German (A2)}
+\end{tabularx}
+
+%========== RESEARCH & PROJECTS ==========
+\section{Research \& Engineering Projects}
+
+\cvproject{EfficientDet-SA --- Scale-Aware Attention for Real-Time Object Detection}{2024}{%
+    \begin{itemize}[leftmargin=14pt, nosep, topsep=2pt, itemsep=1pt]
+        \item Designed a scale-aware attention module that dynamically re-weights multi-scale features in the FPN neck, improving small-object detection by 3.2 mAP on COCO \texttt{val2017}.
+        \item Introduced a lightweight channel-spatial gating unit (0.8M extra params) compatible with YOLO and EfficientDet backbones.
+        \item Achieved 42.6 mAP at 58 FPS on RTX 3090 --- Pareto-optimal on the accuracy-latency frontier vs.\ YOLOv8-M and RT-DETR-R50.
+    \end{itemize}
+}{PyTorch, CUDA, Albumentations, Weights \& Biases, A100 GPU}
+
+\cvproject{HybridDet --- Transformer-CNN Hybrid Detector for Industrial Defect Inspection}{2024 -- 2025}{%
+    \begin{itemize}[leftmargin=14pt, nosep, topsep=2pt, itemsep=1pt]
+        \item Proposed a hybrid architecture pairing a Swin-Tiny backbone with a CNN detection head for high-resolution industrial images (4K).
+        \item Deployed via TensorRT FP16 on Jetson Orin; reduced inference latency from 48ms to 11ms while maintaining 91.3\% mAP on a proprietary PCB defect dataset (12 classes, 50K images).
+        \item Open-sourced training pipeline and ONNX export scripts; 200+ GitHub stars.
+    \end{itemize}
+}{PyTorch, TensorRT, ONNX, Jetson Orin, Docker}
+
+\cvproject{Autonomous Driving Perception --- 3D Object Detection Module}{2023 -- 2024}{%
+    \begin{itemize}[leftmargin=14pt, nosep, topsep=2pt, itemsep=1pt]
+        \item Contributed to a LiDAR-camera fusion pipeline for 3D vehicle detection; implemented BEV feature alignment module.
+        \item Improved nuScenes NDS by 1.8 points over BEVFusion baseline through temporal feature aggregation.
+        \item Built automated evaluation CI/CD with MLflow tracking and nightly regression on 8$\times$A100 cluster.
+    \end{itemize}
+}{MMDetection3D, BEV Fusion, nuScenes, MLflow, Kubernetes}
+
+\cvproject{Real-Time PPE Compliance Detection System --- Construction Sites}{2023}{%
+    \begin{itemize}[leftmargin=14pt, nosep, topsep=2pt, itemsep=1pt]
+        \item Built an end-to-end safety helmet and vest detection system processing 16 RTSP camera streams simultaneously.
+        \item Fine-tuned YOLOv8-S on 8K annotated images; achieved 94.7\% mAP@0.5 with $<$15ms per frame on RTX 3060.
+        \item Deployed as a Docker microservice with REST API; integrated with client's alert dashboard.
+    \end{itemize}
+}{YOLOv8, OpenCV, FastAPI, Docker, Redis}
+
+%========== FUNDED RESEARCH ==========
+\section{Funded Research Participation}
+
+\cventry{Small Object Detection in UAV Imagery Under Complex Backgrounds}{Provincial S\&T Project}{%
+    Grant No.: XXXX-2024-XXXXX\enspace$|$\enspace Role: Core Participant\par
+    {\small Multi-scale feature fusion and context-aware attention for drone-captured aerial object detection.}
+}
+
+\cventry{Vision Foundation Models for Industrial Quality Inspection}{National Youth Fund}{%
+    Grant No.: 62XXXXXXXX\enspace$|$\enspace Role: Participant\par
+    {\small Pre-training and fine-tuning large vision models for zero-shot and few-shot defect detection.}
+}
+
+%========== PROFESSIONAL EXPERIENCE ==========
+\section{Professional Experience}
+
+\cventry{Computer Vision Engineer --- Part-Time Contract}{2024 -- Present}{%
+    Developed and maintained object detection pipelines for a logistics automation startup. Responsibilities include model training, A/B testing detection architectures, and deploying TensorRT-optimized models on edge devices. Reduced package misclassification rate by 37\% through a custom cascade detection strategy.
+}
+
+%========== AWARDS ==========
+\section{Awards \& Recognition}
+
+\begin{itemize}[leftmargin=14pt, nosep, topsep=2pt, itemsep=3pt]
+    \item \textbf{Gold Award} --- Provincial ``Internet+'' Innovation \& Entrepreneurship Competition, 2024.
+    \item \textbf{Silver Award} ($\times$2) --- Provincial ``Internet+'' Innovation \& Entrepreneurship Competition, 2023.
+    \item \textbf{Second Prize} --- National Artificial Intelligence Challenge (Object Detection Track), 2023.
+    \item \textbf{First-Class Academic Scholarship} --- University of Science and Technology, 2022--2025.
+    \item \textbf{National Encouragement Scholarship} --- Ministry of Education, China.
+\end{itemize}
+
+%========== BEYOND WORK ==========
+\section{Beyond Work}
+
+Passionate about the intersection of perception and robotics --- contributing to open-source detection toolboxes and writing technical blog posts on real-time inference optimization. Active participant in Kaggle competitions (Expert tier). Planning relocation to Europe for industry R\&D roles in autonomous systems or industrial AI.
+
+\end{document}
